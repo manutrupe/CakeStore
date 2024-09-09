@@ -21,9 +21,9 @@ public class DBSeeder implements CommandLineRunner {
 
         // Seed data
         List<PickUpPoint> pickUpPoints = Arrays.asList(
-                new PickUpPoint("123 Main St", "Main Branch"),
-                new PickUpPoint("456 Elm St", "Elm Branch"),
-                new PickUpPoint("789 Oak St", "Oak Branch")
+                new PickUpPoint().name("Plaza Galerias").address(" Av Rafael Sanzio 150, Camichines Vallarta, 45020 Zapopan, Jal."),
+                new PickUpPoint().name("Starbucks Coordilleras").address("Av. Manuel J. Clouthier 888, Centro Comercial Soriana Col, Jardines del Tepeyac, 45034 Zapopan, Jal."),
+                new PickUpPoint().name("Chapalita").address("Av Guadalupe 3171, Chapalita, 45040 Zapopan, Jal.")
         );
 
         repository.saveAll(pickUpPoints);

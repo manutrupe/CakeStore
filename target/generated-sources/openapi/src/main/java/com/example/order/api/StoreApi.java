@@ -33,7 +33,7 @@ import java.util.Map;
 import java.util.Optional;
 import jakarta.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-09-03T20:06:37.500235-05:00[America/Mexico_City]", comments = "Generator version: 7.8.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-09-08T20:58:44.441422-05:00[America/Mexico_City]", comments = "Generator version: 7.8.0")
 @Validated
 @Tag(name = "store", description = "Access to Oderstore orders")
 public interface StoreApi {
@@ -142,12 +142,12 @@ public interface StoreApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"PickUpPoint\" : \"{}\", \"Cakes\" : [ \"{}\", \"{}\" ], \"oderId\" : 198772, \"id\" : 10, \"shipDate\" : \"2000-01-23T04:56:07.000+00:00\", \"complete\" : true, \"status\" : \"approved\" }";
+                    String exampleString = "{ \"PickUpPoint\" : \"Plaza Galerias\", \"Cakes\" : [ \"{}\", \"{}\" ], \"oderId\" : 198772, \"id\" : 10, \"shipDate\" : \"2000-01-23T04:56:07.000+00:00\", \"complete\" : true, \"status\" : \"approved\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/xml"))) {
-                    String exampleString = "<order> <id>10</id> <oderId>198772</oderId> <shipDate>2000-01-23T04:56:07.000Z</shipDate> <status>approved</status> <complete>true</complete> </order>";
+                    String exampleString = "<order> <id>10</id> <oderId>198772</oderId> <PickUpPoint>Plaza Galerias</PickUpPoint> <shipDate>2000-01-23T04:56:07.000Z</shipDate> <status>approved</status> <complete>true</complete> </order>";
                     ApiUtil.setExampleResponse(request, "application/xml", exampleString);
                     break;
                 }
@@ -193,7 +193,7 @@ public interface StoreApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"PickUpPoint\" : \"{}\", \"Cakes\" : [ \"{}\", \"{}\" ], \"oderId\" : 198772, \"id\" : 10, \"shipDate\" : \"2000-01-23T04:56:07.000+00:00\", \"complete\" : true, \"status\" : \"approved\" }";
+                    String exampleString = "{ \"PickUpPoint\" : \"Plaza Galerias\", \"Cakes\" : [ \"{}\", \"{}\" ], \"oderId\" : 198772, \"id\" : 10, \"shipDate\" : \"2000-01-23T04:56:07.000+00:00\", \"complete\" : true, \"status\" : \"approved\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

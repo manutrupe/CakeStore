@@ -24,14 +24,14 @@ import jakarta.annotation.Generated;
  * Order
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-09-03T20:06:37.500235-05:00[America/Mexico_City]", comments = "Generator version: 7.8.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-09-08T20:58:44.441422-05:00[America/Mexico_City]", comments = "Generator version: 7.8.0")
 public class Order {
 
   private Long id;
 
   private Long oderId;
 
-  private Object pickUpPoint = null;
+  private String pickUpPoint;
 
   @Valid
   private List<Object> cakes = new ArrayList<>();
@@ -131,23 +131,23 @@ public class Order {
     this.oderId = oderId;
   }
 
-  public Order pickUpPoint(Object pickUpPoint) {
+  public Order pickUpPoint(String pickUpPoint) {
     this.pickUpPoint = pickUpPoint;
     return this;
   }
 
   /**
-   * Get pickUpPoint
+   * Order PickUpPoint
    * @return pickUpPoint
    */
   
-  @Schema(name = "PickUpPoint", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "PickUpPoint", example = "Plaza Galerias", description = "Order PickUpPoint", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("PickUpPoint")
-  public Object getPickUpPoint() {
+  public String getPickUpPoint() {
     return pickUpPoint;
   }
 
-  public void setPickUpPoint(Object pickUpPoint) {
+  public void setPickUpPoint(String pickUpPoint) {
     this.pickUpPoint = pickUpPoint;
   }
 

@@ -619,7 +619,10 @@ components:
           format: int64
           example: 198772
         PickUpPoint:
-          $ref: 'components/schemas/PickUpPoint'
+          type: string
+          description: "Order PickUpPoint"
+          example: "Plaza Galerias"
+          nullable: false
         Cakes:
           type: array
           items:

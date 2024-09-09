@@ -9,6 +9,7 @@ com/example/service/OrderService.class
 com/example/order/api/UserApi.class
 com/example/order/model/Cake$SizeEnum.class
 com/example/order/model/Category.class
+com/example/service/PickUpPointService.class
 com/example/order/api/ApiUtil.class
 com/example/order/model/ModelApiResponse.class
 com/example/order/model/User.class
