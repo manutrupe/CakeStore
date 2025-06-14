@@ -38,6 +38,56 @@ tags:
   - name: user
     description: Operations about user
 paths:
+  /cake/sizes:
+    get:
+      summary: Get available cake sizes
+      description: Returns the available sizes for cakes.
+      responses:
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '200':
+          description: A list of available cake sizes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CakeSize'
+  /cake/types:
+    get:
+      summary: Get available cake types
+      description: Returns the available types for cakes.
+      responses:
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '200':
+          description: A list of available cake types
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CakeType'
   /order:
     put:
       tags:
@@ -653,21 +703,60 @@ components:
       type: object
       properties:
         size:
-          type: string
-          enum:
-            - LunchBox
-            - Petit
-            - Chico
-            - Mediano
-            - Grande
+         $ref: '#/components/schemas/CakeSize'
         type:
+          $ref: '#/components/schemas/CakeType'
+        flavor:
+          $ref: '#/components/schemas/CakeFlavor'
+        extra:
+          $ref: '#/components/schemas/Extra'
+    CakeFlavor:
+      type: string
+      enum:
+        - Vanilla
+        - Chocolate
+        - Zanahoria
+    CakeType:
+      type: string
+      enum:
+        - LunchBox
+        - TwoTier
+        - Corazon
+        - Circular
+        - Vintage
+    CakeSize:
+      type: string
+      enum:
+        - LunchBox
+        - Petit
+        - Chico
+        - Mediano
+        - Grande
+    Extra:
+      type: object
+      properties:
+        name:
           type: string
-          enum:
-            - LunchBox
-            - TwoTier
-            - Corazon
-            - Circular
-            - Vintage
+        price:
+          type: number
+          format: currency
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+          description: The error code representing the type of error
+        message:
+          type: string
+          description: A descriptive error message explaining what went wrong
+        details:
+          type: string
+          description: Additional details about the error (optional)
+      example:
+        code: 400
+        message: "Invalid request parameters"
+        details: "The 'flavor' field is required."
     Customer:
       type: object
       properties:

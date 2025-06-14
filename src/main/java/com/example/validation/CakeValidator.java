@@ -2,6 +2,8 @@ package com.example.validation;
 
 import com.example.anotation.ValidCake;
 import com.example.order.model.Cake;
+import com.example.order.model.CakeSize;
+import com.example.order.model.CakeType;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -15,15 +17,15 @@ public class CakeValidator implements ConstraintValidator<ValidCake, Cake> {
     @Override
     public boolean isValid(Cake cake, ConstraintValidatorContext context) {
 
-        Cake.SizeEnum size = cake.getSize();
-        Cake.TypeEnum type = cake.getType();
+        CakeSize size = cake.getSize();
+        CakeType type = cake.getType();
 
         return switch (type) {
-            case LUNCH_BOX -> size == Cake.SizeEnum.LUNCH_BOX;
-            case TWO_TIER -> size == Cake.SizeEnum.MEDIANO || size == Cake.SizeEnum.GRANDE;
-            case CORAZON, CIRCULAR, VINTAGE -> size == Cake.SizeEnum.LUNCH_BOX || size == Cake.SizeEnum.PETIT ||
-                    size == Cake.SizeEnum.CHICO || size == Cake.SizeEnum.MEDIANO ||
-                    size == Cake.SizeEnum.GRANDE;
+            case LUNCH_BOX -> size == CakeSize.LUNCH_BOX;
+            case TWO_TIER -> size == CakeSize.MEDIANO || size == CakeSize.GRANDE;
+            case CORAZON, CIRCULAR, VINTAGE -> size == CakeSize.LUNCH_BOX || size == CakeSize.PETIT ||
+                    size == CakeSize.CHICO || size == CakeSize.MEDIANO ||
+                    size == CakeSize.GRANDE;
             default -> false;
         };
     }
