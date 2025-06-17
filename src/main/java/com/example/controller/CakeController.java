@@ -28,4 +28,6 @@ public class CakeController implements DefaultApi {
         List<CakeType> cakeTypes = Arrays.asList(CakeType.values());
         return ResponseEntity.status(HttpStatus.OK).body(cakeTypes);
     }
+
+
 }
