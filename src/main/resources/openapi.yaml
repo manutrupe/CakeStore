@@ -46,7 +46,11 @@ paths:
       description: Add a new cake
       operationId: addCake
       requestBody:
-        $ref: '#/components/requestBodies/CakeTemplate'
+        description: Cake template object that needs to be added to the store
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CakeTemplate'
       responses:
         default:
           description: Unexpected error
