@@ -38,6 +38,59 @@ tags:
   - name: user
     description: Operations about user
 paths:
+  /cake:
+    post:
+      tags:
+        - cake
+      summary: Add a new cake
+      description: Add a new cake
+      operationId: addCake
+      requestBody:
+        $ref: '#/components/requestBodies/CakeTemplate'
+      responses:
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CakeTemplate'     
+  /cakes: 
+    get:
+      summary: Get available cakes
+      description: Returns the available cakes.
+      responses:
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '200':
+          description: A list of available cakes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CakeTemplate'
   /cake/sizes:
     get:
       summary: Get available cake sizes
@@ -136,7 +189,7 @@ paths:
       operationId: addOrder
       requestBody:
         description: Create a Order
-        x-constraints: "@ValidCake"
+        #x-constraints: "@ValidCake"
         content:
           application/json:
             schema:
@@ -676,7 +729,7 @@ components:
         Cakes:
           type: array
           items:
-            $ref: 'components/schemas/Cake'
+            $ref: 'components/schemas/CakeOrder'
         shipDate:
           type: string
           format: date-time
@@ -699,17 +752,55 @@ components:
           type: string
         Name:
           type: string
-    Cake:
+    CakeTemplate:
       type: object
       properties:
-        size:
-         $ref: '#/components/schemas/CakeSize'
-        type:
-          $ref: '#/components/schemas/CakeType'
-        flavor:
-          $ref: '#/components/schemas/CakeFlavor'
-        extra:
+        id: 
+          type: integer
+          format: int64
+          readOnly: true
+          example: 10
+        name:
+          type: string
+        subtitle:
+          type: string 
+        description:
+          type: string
+        basePrice:
+          type: number
+          format: float
+          description: The base price of the cake template itself
+        image: 
+          type: string;
+        Option:
+         type: array
+         items:
           $ref: '#/components/schemas/Extra'
+    CakeOrder:
+      type: object
+      properties:
+        id: 
+          type: integer
+          format: int64
+          readOnly: true
+          example: 10
+        basePrice:
+          type: number
+          format: float
+          description: The base price of the cake template itself
+        Option:
+         type: array
+         items:
+          $ref: '#/components/schemas/extraOption'
+        optionsPrice:
+          type: number
+          format: float
+          description: The price of the cake extras
+        FullPrice:
+          type: number
+          format: float
+          description: The price of the cake template with extras
+   
     CakeFlavor:
       type: string
       enum:
@@ -732,14 +823,34 @@ components:
         - Chico
         - Mediano
         - Grande
+
+    extraOption:
+      type: object
+      properties:
+          name: 
+            type: string
+          price:
+            type: number
+            format: currency
+          image:
+            type: string
     Extra:
       type: object
       properties:
         name:
           type: string
-        price:
-          type: number
-          format: currency
+        mandatory:
+          type: boolean
+        type:
+          type: string
+          enum: 
+            - multiple 
+            - single 
+            - text
+        options:
+            type: array
+            items:
+              $ref: '#/components/schemas/extraOption'
     Error:
       type: object
       properties:
@@ -893,6 +1004,15 @@ components:
       xml:
         name: '##default'
   requestBodies:
+    Cake:
+      description: Cake object that needs to be added to the store
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CakeOrder'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/CakeOrder'
     Oder:
       description: Oder object that needs to be added to the store
       content:

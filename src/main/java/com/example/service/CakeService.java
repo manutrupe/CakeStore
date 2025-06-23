@@ -1,13 +1,25 @@
 package com.example.service;
 
-import com.example.order.model.Cake;
+import com.example.order.model.CakeTemplate;
 import com.example.repository.CakeRepository;
 import lombok.RequiredArgsConstructor;
+
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class CakeService {
     private final CakeRepository repository;
-    public Cake addCake(Cake cake){ return repository.save(cake); }
+    public CakeTemplate addCake(CakeTemplate cake){ return repository.save(cake); }
+    public List<CakeTemplate> findAll() {
+        return repository.findAll();
+    }
+    public CakeTemplate findCakeById(Long id) {
+        return repository.findById(id).orElse(null);
+    }
+    public void deleteCake(Long id) {
+        repository.deleteById(id);
+    }
 }

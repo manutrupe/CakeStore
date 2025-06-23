@@ -1,8 +1,11 @@
 package com.example.controller;
 
 import com.example.order.api.DefaultApi;
+import com.example.order.model.CakeTemplate;
 import com.example.order.model.CakeSize;
 import com.example.order.model.CakeType;
+import com.example.service.CakeService;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -17,6 +20,8 @@ import java.util.List;
 @Slf4j
 public class CakeController implements DefaultApi {
 
+    private final CakeService service;
+
     @Override
     public ResponseEntity<List<CakeSize>> cakeSizesGet() {
         List<CakeSize> cakeSizes = Arrays.asList(CakeSize.values());
@@ -27,6 +32,12 @@ public class CakeController implements DefaultApi {
     public ResponseEntity<List<CakeType>> cakeTypesGet() {
         List<CakeType> cakeTypes = Arrays.asList(CakeType.values());
         return ResponseEntity.status(HttpStatus.OK).body(cakeTypes);
+    }
+
+    @Override
+    public ResponseEntity<List<CakeTemplate>> cakesGet() {
+        List<CakeTemplate> cakes = service.findAll();
+        return ResponseEntity.status(HttpStatus.OK).body(cakes);
     }
 
 

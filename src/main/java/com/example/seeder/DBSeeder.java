@@ -33,10 +33,10 @@ public class DBSeeder implements CommandLineRunner {
                 new PickUpPoint().name("Chapalita").address("Av Guadalupe 3171, Chapalita, 45040 Zapopan, Jal.")
         );
 
-        pickUpPointRepository.saveAll(pickUpPoints);
+        //pickUpPointRepository.saveAll(pickUpPoints);
         System.out.println("Database seeding pick Up point complete.");
 
-        List<Extra> extras = Arrays.asList(
+     /*    List<Extra> extras = Arrays.asList(
                 new Extra().name("Perlas").price(new BigDecimal("20")),
                 new Extra().name("Moños").price(new BigDecimal("10")),
                 new Extra().name("Flores Naturales").price(new BigDecimal("100")),
@@ -44,8 +44,8 @@ public class DBSeeder implements CommandLineRunner {
                 new Extra().name("Brillantina").price(new BigDecimal("10")),
                 new Extra().name("Flores mantequila").price(new BigDecimal("50"))
         );
-
-        extraRepository.saveAll(extras);
+*/
+        //extraRepository.saveAll(extras);
         System.out.println("Database seeding for extras complete.");
 
         System.out.println("Database seeding completed.");
