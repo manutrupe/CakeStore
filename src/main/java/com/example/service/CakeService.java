@@ -16,10 +16,10 @@ public class CakeService {
     public List<CakeTemplate> findAll() {
         return repository.findAll();
     }
-    public CakeTemplate findCakeById(Long id) {
+    public CakeTemplate findCakeById(String id) {
         return repository.findById(id).orElse(null);
     }
-    public void deleteCake(Long id) {
+    public void deleteCake(String id) {
         repository.deleteById(id);
     }
 }
